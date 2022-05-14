@@ -6,14 +6,14 @@ namespace Infrastructure.HtmlParsers;
 
 public class RabotaUaVacancyParser : IVacancyParser
 {
-    private readonly IHtmlService _html;
+    private readonly IHtmlPageService _htmlPage;
 
-    public RabotaUaVacancyParser(IHtmlService html) => _html = html;
+    public RabotaUaVacancyParser(IHtmlPageService htmlPage) => _htmlPage = htmlPage;
     
     public async Task<IEnumerable<GetVacancyResponse>> Get(GetVacanciesRequest request)
     {
         var (category, city) = request;
-        var html = await _html.Get($"https://rabota.ua/zapros/{category}/{city}");
+        var html = await _htmlPage.Get($"https://rabota.ua/zapros/{category}/{city}");
 
         var document = new HtmlDocument();
         document.LoadHtml(html);
