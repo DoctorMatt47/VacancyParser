@@ -1,0 +1,2 @@
+﻿GET {{host}}/api/Vacancies
+Accept: application/json
