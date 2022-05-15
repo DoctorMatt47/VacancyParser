@@ -12,7 +12,7 @@ public class Startup
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.Testing.json", true, true)
             .Build();
-        
+
         services.AddInfrastructure(configuration);
     }
 }

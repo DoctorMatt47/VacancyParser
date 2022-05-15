@@ -13,13 +13,13 @@ public class RabotaUaVacancyParserTests
     public void GetParsedVacancies()
     {
         var parser = _parsers.First(p => p is RabotaUaVacancyParser);
-        
+
         var vacancies = parser.Get(new GetVacanciesRequest(".net", "киев"));
-        
+
         Assert.All(vacancies, vacancy =>
         {
             var (title, companyName, _, _, _) = vacancy;
-            
+
             Assert.NotEqual(title, string.Empty);
             Assert.NotEqual(companyName, string.Empty);
         });

@@ -16,10 +16,10 @@ public class RabotaUaVacancyParser : IVacancyParser
     {
         var (category, city) = request;
         const string host = "https://rabota.ua";
-        
+
         var url = $"{host}/zapros/{category}/{city}";
         var waitUntil = ExpectedConditions.ElementExists(By.ClassName("list-container"));
-        
+
         var html = _dynamicPage.GetHtml(url, waitUntil);
 
         var document = new HtmlDocument();
@@ -37,7 +37,7 @@ public class RabotaUaVacancyParser : IVacancyParser
                 var vacancyInfoNode = node.ChildNodes
                     .First(n => n.HasClass("santa-flex"))
                     .ChildNodes[3].FirstChild;
-                
+
                 return new
                 {
                     Title = vacancyInfoNode.FirstChild.InnerText,

@@ -18,9 +18,6 @@ public class DynamicPageService : IDynamicPageService
         using var driver = new ChromeDriver(chromeDriverDirectory, new ChromeOptions {BinaryLocation = binaryLocation});
 
         driver.Navigate().GoToUrl(uri);
-        
-        //var waitForElement = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-        //waitForElement.Until(waitUntil);
 
         return driver.PageSource;
     }

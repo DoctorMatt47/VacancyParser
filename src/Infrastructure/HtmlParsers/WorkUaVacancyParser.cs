@@ -13,9 +13,9 @@ public class WorkUaVacancyParser : IVacancyParser
     public IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request)
     {
         var (city, category) = request;
-        
+
         const string host = "https://www.work.ua";
-            
+
         var uri = $"{host}/jobs-{request.City}-{request.Category}";
         var html = _dynamicPage.GetHtml(uri, null);
 
