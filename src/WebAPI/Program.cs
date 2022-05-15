@@ -1,6 +1,9 @@
+using Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddInfrastructure(builder.Configuration)
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddControllers();
