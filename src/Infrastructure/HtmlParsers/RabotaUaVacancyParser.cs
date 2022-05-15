@@ -12,14 +12,15 @@ public class RabotaUaVacancyParser : IVacancyParser
 
     public RabotaUaVacancyParser(IDynamicPageService dynamicPage) => _dynamicPage = dynamicPage;
 
-    public async Task<IEnumerable<GetVacancyResponse>> Get(GetVacanciesRequest request)
+    public IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request)
     {
         var (category, city) = request;
-
-        var url = $"https://rabota.ua/zapros/{category}/{city}";
+        const string host = "https://rabota.ua";
+        
+        var url = $"{host}/zapros/{category}/{city}";
         var waitUntil = ExpectedConditions.ElementExists(By.ClassName("list-container"));
-
-        var html = await _dynamicPage.GetHtml(url, waitUntil);
+        
+        var html = _dynamicPage.GetHtml(url, waitUntil);
 
         var document = new HtmlDocument();
         document.LoadHtml(html);
@@ -30,14 +31,21 @@ public class RabotaUaVacancyParser : IVacancyParser
                 && node.HasClass("santa-flex-col")
                 && node.HasClass("ng-star-inserted")).ChildNodes
             .Take(1..^8)
-            .Select(node => node.FirstChild.FirstChild.ChildNodes
-                .First(n => n.HasClass("santa-flex")).ChildNodes[3].FirstChild)
-            .Select(node => new
+            .Select(node => node.FirstChild.FirstChild)
+            .Select(node =>
             {
-                Title = node.FirstChild.InnerText,
-                CompanyName = node.ChildNodes[2].FirstChild.InnerText,
-                City = node.ChildNodes[2].ChildNodes[3].InnerText
+                var vacancyInfoNode = node.ChildNodes
+                    .First(n => n.HasClass("santa-flex"))
+                    .ChildNodes[3].FirstChild;
+                
+                return new
+                {
+                    Title = vacancyInfoNode.FirstChild.InnerText,
+                    CompanyName = vacancyInfoNode.ChildNodes[2].FirstChild.InnerText,
+                    City = vacancyInfoNode.ChildNodes[2].ChildNodes[3].InnerText,
+                    Link = node.Attributes["href"].Value
+                };
             })
-            .Select(v => new GetVacancyResponse(v.Title, v.CompanyName, string.Empty, string.Empty));
+            .Select(v => new GetVacancyResponse(v.Title, v.CompanyName, string.Empty, string.Empty, host + v.Link));
     }
 }

@@ -4,5 +4,5 @@ namespace Infrastructure.Services;
 
 public interface IDynamicPageService
 {
-    Task<string> GetHtml(string uri, Func<IWebDriver, IWebElement> waitUntil);
+    string GetHtml(string uri, Func<IWebDriver, IWebElement> waitUntil);
 }

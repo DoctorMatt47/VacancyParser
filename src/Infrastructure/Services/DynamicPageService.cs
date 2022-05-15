@@ -10,18 +10,18 @@ public class DynamicPageService : IDynamicPageService
 
     public DynamicPageService(IConfiguration configuration) => _configuration = configuration;
 
-    public Task<string> GetHtml(string uri, Func<IWebDriver, IWebElement> waitUntil)
+    public string GetHtml(string uri, Func<IWebDriver, IWebElement> waitUntil)
     {
         var binaryLocation = _configuration.GetSection("ChromeExecutablePath").Value;
         var chromeDriverDirectory = _configuration.GetSection("ChromeDriverDirectory").Value;
 
-        var driver = new ChromeDriver(chromeDriverDirectory, new ChromeOptions {BinaryLocation = binaryLocation});
+        using var driver = new ChromeDriver(chromeDriverDirectory, new ChromeOptions {BinaryLocation = binaryLocation});
 
         driver.Navigate().GoToUrl(uri);
         
         //var waitForElement = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         //waitForElement.Until(waitUntil);
 
-        return Task.FromResult(driver.PageSource);
+        return driver.PageSource;
     }
 }
