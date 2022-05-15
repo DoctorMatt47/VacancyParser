@@ -1,8 +1,10 @@
+using Application.Extensions;
 using Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
@@ -14,7 +16,7 @@ app.UseSwagger().UseSwaggerUI();
 
 app.UseExceptionHandler("/error")
     .UseHttpsRedirection();
-    
-app.MapControllers(); 
+
+app.MapControllers();
 
 app.Run();

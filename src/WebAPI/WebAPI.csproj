@@ -8,11 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="Properties\launchSettings.json" />
+        <Content Include="Properties\launchSettings.json"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>
