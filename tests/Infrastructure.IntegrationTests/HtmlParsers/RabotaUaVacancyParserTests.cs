@@ -1,7 +1,7 @@
-﻿using Application.Vacancies;
-using Infrastructure.HtmlParsers;
+﻿using VacancyParser.Application.Vacancies;
+using VacancyParser.Infrastructure.HtmlParsers;
 
-namespace Infrastructure.IntegrationTests.HtmlParsers;
+namespace VacancyParser.Infrastructure.IntegrationTests.HtmlParsers;
 
 public class RabotaUaVacancyParserTests
 {

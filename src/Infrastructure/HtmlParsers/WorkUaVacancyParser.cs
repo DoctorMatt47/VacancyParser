@@ -1,10 +1,10 @@
-﻿using Application.Vacancies;
-using HtmlAgilityPack;
-using Infrastructure.Services;
+﻿using HtmlAgilityPack;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
+using VacancyParser.Application.Vacancies;
+using VacancyParser.Infrastructure.Services;
 
-namespace Infrastructure.HtmlParsers;
+namespace VacancyParser.Infrastructure.HtmlParsers;
 
 public class WorkUaVacancyParser : IVacancyParser
 {

@@ -1,7 +1,7 @@
-﻿using Application.Vacancies;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using VacancyParser.Application.Vacancies;
 
-namespace Application.Extensions;
+namespace VacancyParser.Application.Extensions;
 
 public static class ServiceCollectionExtensions
 {

@@ -1,8 +1,8 @@
-﻿using Infrastructure.Extensions;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VacancyParser.Infrastructure.Extensions;
 
-namespace Infrastructure.IntegrationTests;
+namespace VacancyParser.Infrastructure.IntegrationTests;
 
 public class Startup
 {

@@ -1,10 +1,10 @@
-﻿using Application.Vacancies;
-using Infrastructure.HtmlParsers;
-using Infrastructure.Services;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VacancyParser.Application.Vacancies;
+using VacancyParser.Infrastructure.HtmlParsers;
+using VacancyParser.Infrastructure.Services;
 
-namespace Infrastructure.Extensions;
+namespace VacancyParser.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtensions
 {

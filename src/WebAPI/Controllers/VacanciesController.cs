@@ -1,7 +1,7 @@
-﻿using Application.Vacancies;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using VacancyParser.Application.Vacancies;
 
-namespace WebAPI.Controllers;
+namespace VacancyParser.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

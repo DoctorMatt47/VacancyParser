@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Infrastructure.Services;
+namespace VacancyParser.Infrastructure.Services;
 
 public class DynamicPageService : IDynamicPageService
 {

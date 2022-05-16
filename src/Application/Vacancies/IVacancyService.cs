@@ -1,4 +1,4 @@
-﻿namespace Application.Vacancies;
+﻿namespace VacancyParser.Application.Vacancies;
 
 public interface IVacancyService
 {

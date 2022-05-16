@@ -1,5 +1,5 @@
-using Application.Extensions;
-using Infrastructure.Extensions;
+using VacancyParser.Application.Extensions;
+using VacancyParser.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

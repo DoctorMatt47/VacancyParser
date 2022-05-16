@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Infrastructure.Services;
+namespace VacancyParser.Infrastructure.Services;
 
 public interface IDynamicPageService
 {
