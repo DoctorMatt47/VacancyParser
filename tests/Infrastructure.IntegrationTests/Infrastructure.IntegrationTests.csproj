@@ -6,6 +6,10 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+
+        <AssemblyName>VacancyParser.Infrastructure.IntegrationTests</AssemblyName>
+
+        <RootNamespace>VacancyParser.Infrastructure.IntegrationTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

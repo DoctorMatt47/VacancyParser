@@ -4,6 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AssemblyName>VacancyParser.Infrastructure</AssemblyName>
+        <RootNamespace>VacancyParser.Infrastructure</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
