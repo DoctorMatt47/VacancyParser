@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  webapi:
+    build:
+      context: .
+      dockerfile: src/WebAPI/Dockerfile
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    ports:
+      - "5021:80"
+      - "7021:443"
+    restart: on-failure
