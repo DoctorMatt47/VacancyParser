@@ -1,6 +1,8 @@
 ﻿using Application.Vacancies;
 using HtmlAgilityPack;
 using Infrastructure.Services;
+using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 
 namespace Infrastructure.HtmlParsers;
 
@@ -16,8 +18,8 @@ public class WorkUaVacancyParser : IVacancyParser
 
         const string host = "https://www.work.ua";
 
-        var uri = $"{host}/jobs-{request.City}-{request.Category}";
-        var html = _dynamicPage.GetHtml(uri, null);
+        var uri = $"{host}/jobs-{city}-{category}";
+        var html = _dynamicPage.GetHtml(uri, ExpectedConditions.ElementExists(By.Id("pjax-job-list")));
 
         var document = new HtmlDocument();
         document.LoadHtml(html);
