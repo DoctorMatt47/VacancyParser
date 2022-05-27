@@ -2,5 +2,6 @@
 
 public interface IVacancyService
 {
-    IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request);
+    Task<IEnumerable<GetVacancyResponse>> Get(GetVacanciesRequest request);
+    Task<IEnumerable<GetVacancyResponse>> Parse(GetVacanciesRequest request);
 }
