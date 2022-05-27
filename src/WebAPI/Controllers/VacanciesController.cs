@@ -12,5 +12,10 @@ public class VacanciesController : ControllerBase
     public VacanciesController(IVacancyService vacancies) => _vacancies = vacancies;
 
     [HttpGet]
-    public IEnumerable<GetVacancyResponse> Get([FromQuery] GetVacanciesRequest request) => _vacancies.Get(request);
+    public async Task<IEnumerable<GetVacancyResponse>> Get([FromQuery] GetVacanciesRequest request) =>
+        await _vacancies.Get(request);
+
+    [HttpPost]
+    public async Task<IEnumerable<GetVacancyResponse>> Parse([FromBody] GetVacanciesRequest request) =>
+        await _vacancies.Parse(request);
 }
