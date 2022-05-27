@@ -18,7 +18,7 @@ public class WorkUaVacancyParserTests
 
         Assert.All(vacancies, vacancy =>
         {
-            var (title, companyName, _, _, _) = vacancy;
+            var (title, companyName, _, _) = vacancy;
 
             Assert.NotEqual(title, string.Empty);
             Assert.NotEqual(companyName, string.Empty);
