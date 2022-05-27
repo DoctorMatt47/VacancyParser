@@ -25,13 +25,8 @@ public class RabotaUaVacancyParser : IVacancyParser
         document.LoadHtml(html);
 
         return document.DocumentNode.Descendants()
-            .First(node => node.HasClass("list-container")).ChildNodes
-            .First(node => node.HasClass("santa-flex")
-                && node.HasClass("santa-flex-col")
-                && node.HasClass("ng-star-inserted")).ChildNodes
-            .Take(1..^8)
-            .Select(node => node.FirstChild.FirstChild)
-            .Select(node =>
+            .Where(node => node.HasClass("card"))
+            .Skip(1).Select(node =>
             {
                 var vacancyInfoNode = node.ChildNodes
                     .First(n => n.HasClass("santa-flex"))
