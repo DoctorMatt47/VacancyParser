@@ -8,7 +8,7 @@ public class VacancyService : IVacancyService
 
     public IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request)
     {
-        var vacancies = _parsers.Select(parser => parser.Get(request)).ToList();
+        var vacancies = _parsers.Select(parser => parser.Parse(request)).ToList();
 
         return vacancies.SelectMany(v => v);
     }

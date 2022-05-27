@@ -17,9 +17,9 @@ public class WorkUaVacancyParser : IVacancyParser
         var (city, category) = request;
 
         const string host = "https://www.work.ua";
-
         var uri = $"{host}/jobs-{city}-{category}";
-        var html = _dynamicPage.GetHtml(uri, ExpectedConditions.ElementExists(By.Id("pjax-job-list")));
+        var waitUntil = ExpectedConditions.ElementExists(By.Id("pjax-job-list"));
+        var html = _dynamicPage.GetHtml(uri, waitUntil);
 
         var document = new HtmlDocument();
         document.LoadHtml(html);
@@ -29,16 +29,18 @@ public class WorkUaVacancyParser : IVacancyParser
             .Where(node => node.HasClass("job-link"))
             .Select(node =>
             {
-                var companyAndCityNode = node.ChildNodes.First(n => n.HasClass("flex"));
                 var titleNode = node.ChildNodes.First(n => n.OriginalName == "h2").ChildNodes[1];
-                return new
-                {
-                    Title = titleNode.InnerText,
-                    CompanyName = companyAndCityNode.ChildNodes[1].InnerText,
-                    City = companyAndCityNode.ChildNodes[3].InnerText,
-                    Link = titleNode.Attributes.First(attr => attr.Name == "href").Value
-                };
-            })
-            .Select(v => new GetVacancyResponse(v.Title, v.CompanyName, string.Empty, string.Empty, host + v.Link));
+
+                var title = titleNode.InnerText;
+                var companyName = node.ChildNodes.First(n => n.HasClass("flex")).ChildNodes[1].InnerText;
+                var link = host + titleNode.Attributes.First(attr => attr.Name == "href").Value;
+                var salary = node.ChildNodes
+                    .FirstOrDefault(n => n.OriginalName == "div" && !n.HasAttributes)
+                    ?.ChildNodes[1].InnerText
+                    .Replace("&nbsp", "")
+                    .Trim() ?? string.Empty;
+
+                return new GetVacancyResponse(title, companyName, salary, link);
+            });
     }
 }

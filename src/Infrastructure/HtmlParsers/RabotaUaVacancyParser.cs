@@ -15,11 +15,10 @@ public class RabotaUaVacancyParser : IVacancyParser
     public IEnumerable<GetVacancyResponse> Parse(GetVacanciesRequest request)
     {
         var (category, city) = request;
+
         const string host = "https://rabota.ua";
-
-        var url = $"{host}/zapros/{category}/{city}";
-        var waitUntil = ExpectedConditions.ElementExists(By.ClassName("list-container"));
-
+        var url = $"{host}/ua/zapros/{category}/{city}";
+        var waitUntil = ExpectedConditions.ElementExists(By.ClassName("card"));
         var html = _dynamicPage.GetHtml(url, waitUntil);
 
         var document = new HtmlDocument();
@@ -38,14 +37,12 @@ public class RabotaUaVacancyParser : IVacancyParser
                     .First(n => n.HasClass("santa-flex"))
                     .ChildNodes[3].FirstChild;
 
-                return new
-                {
-                    Title = vacancyInfoNode.FirstChild.InnerText,
-                    CompanyName = vacancyInfoNode.ChildNodes[2].FirstChild.InnerText,
-                    City = vacancyInfoNode.ChildNodes[2].ChildNodes[3].InnerText,
-                    Link = node.Attributes["href"].Value
-                };
-            })
-            .Select(v => new GetVacancyResponse(v.Title, v.CompanyName, string.Empty, string.Empty, host + v.Link));
+                var title = vacancyInfoNode.FirstChild.InnerText.Trim();
+                var companyName = vacancyInfoNode.ChildNodes[2].FirstChild.InnerText.Trim();
+                var link = host + node.Attributes["href"].Value;
+                var salary = vacancyInfoNode.ChildNodes[1].InnerText.Replace("&nbsp", "").Trim();
+
+                return new GetVacancyResponse(title, companyName, salary, link);
+            });
     }
 }
