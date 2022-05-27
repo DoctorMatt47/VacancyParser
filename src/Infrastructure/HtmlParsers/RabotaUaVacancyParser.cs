@@ -12,7 +12,7 @@ public class RabotaUaVacancyParser : IVacancyParser
 
     public RabotaUaVacancyParser(IDynamicPageService dynamicPage) => _dynamicPage = dynamicPage;
 
-    public IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request)
+    public IEnumerable<GetVacancyResponse> Parse(GetVacanciesRequest request)
     {
         var (category, city) = request;
         const string host = "https://rabota.ua";

@@ -2,5 +2,5 @@
 
 public interface IVacancyParser
 {
-    IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request);
+    IEnumerable<GetVacancyResponse> Parse(GetVacanciesRequest request);
 }

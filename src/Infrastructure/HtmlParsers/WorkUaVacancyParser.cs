@@ -12,7 +12,7 @@ public class WorkUaVacancyParser : IVacancyParser
 
     public WorkUaVacancyParser(IDynamicPageService dynamicPage) => _dynamicPage = dynamicPage;
 
-    public IEnumerable<GetVacancyResponse> Get(GetVacanciesRequest request)
+    public IEnumerable<GetVacancyResponse> Parse(GetVacanciesRequest request)
     {
         var (city, category) = request;
 

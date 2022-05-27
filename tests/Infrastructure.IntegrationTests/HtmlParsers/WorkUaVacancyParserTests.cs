@@ -14,7 +14,7 @@ public class WorkUaVacancyParserTests
     {
         var parser = _parsers.First(p => p is WorkUaVacancyParser);
 
-        var vacancies = parser.Get(new GetVacanciesRequest(".net", "киев"));
+        var vacancies = parser.Parse(new GetVacanciesRequest(".net", "киев"));
 
         Assert.All(vacancies, vacancy =>
         {
