@@ -34,7 +34,8 @@ public class VacancyService : IVacancyService
 
         var vacancies = vacancyResponses
             .ExceptBy(existLinks, v => v.Link)
-            .Select(v => new Vacancy(v.Link, v.Title, v.CompanyName, v.Salary, request.City, request.Category));
+            .Select(v => new Vacancy(v.Link, v.Title, v.CompanyName,
+                v.Salary, request.City, request.Category));
 
         await _context.Set<Vacancy>().AddRangeAsync(vacancies);
         await _context.SaveChangesAsync();
